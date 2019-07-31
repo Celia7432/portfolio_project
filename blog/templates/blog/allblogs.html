@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-  {% load static %}
+  {% load static%}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v3.8.5">
-  <title>Celia Zeng</title>
+  <title>Celia's blog</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -39,57 +39,40 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{% url 'home' %}">Celia Zeng</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link " href="https://twitter.com/xiaozhan911005">Twitter</a>
-          <a class="nav-item nav-link" href="{% static 'example_resume.pdf'%}">Resume</a>
-          <a class="nav-item nav-link" href="{% url 'allblogs'%}">Blog</a>
-        </div>
-      </div>
-    </nav>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="{% url 'home' %}">Celia Zeng</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ml-auto">
+              <a class="nav-item nav-link " href="https://twitter.com/xiaozhan911005">Twitter</a>
+              <a class="nav-item nav-link" href="{% static 'example_resume.pdf'%}">Resume</a>
+              <a class="nav-item nav-link active" href="{% url 'allblogs'%}">Blog</a>
+            </div>
+          </div>
+        </nav>
   </header>
 
   <main role="main">
+    <div class='container'>
+      <h1 class='text-center pt-3'>Welcome to Celia's Blog</h1>
+      <br>
+      <br>
+      <h2>Latest Posts</h2>
+      <hr>
 
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">Hi, I'm Celia</h1>
-        <p class="lead text-muted">My name is Celia and this is my first Django website. Django is so cool!</p>
-        <p>
-          <a href="mailto:zx2017s@163.com" class="btn btn-primary my-2">Email Me</a>
-        </p>
-        <img class = "img-fluid" src = "{% static 'xiaozhan.jpg' %}">
-      </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-      <div class="container">
-
-        <div class="row">
-
-          {% for job in jobs.all %}
-
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card mb-4 box-shadow" src = "{{job.image.url}}">
-              <div class="card-body">
-                <p class="card-text">{{job.summary}}</p>
-              </div>
-            </div>
-          </div>
-          
-          {%endfor%}
-
-        </div>
-      </div>
+      {% for blog in blogs.all %}
+      <a href = "{% url 'detail' blog.id %}"> <h3>{{ blog.title }}</h3></a>
+      {{blog.pub_date_pretty}}
+      <br>
+      <img class = "img-fluid" src = "{{blog.image.url}}" >
+      <br>
+      <p>{{blog.summary}}</p>
+      
+      {%endfor%}
     </div>
-
   </main>
 
   <footer class="text-muted">
